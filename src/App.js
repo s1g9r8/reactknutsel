@@ -7,7 +7,7 @@ class App extends Component {
 
   render() {
 
-    var weekdays = [{
+    const weekdays = [{
       fieldLabel: "Monday",
       fieldRef: "monday"
     }, {
