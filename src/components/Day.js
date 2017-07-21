@@ -1,41 +1,30 @@
 import React from 'react';
 
 export default class Day extends React.Component {
+
   constructor(props) {
     super(props);
-    this.onFormSubmit = this.onFormSubmit.bind(this);
     this.state = {
-      data: ''
-    }
+      hoursValue: ""
+    };
+    this.getDayData = this.getDayData.bind(this);
+    this.changeHours = this.changeHours.bind(this);
   }
 
-  onFormSubmit(e) {
-    e.preventDefault();
+  getDayData () {
+      return this.state.hoursValue;
+  }
 
-    alert (Number(this.refs.monday.value) + Number(this.refs.tuesday.value)+ Number(this.refs.wednesday.value)+ Number(this.refs.thursday.value)+ Number(this.refs.friday.value));
+  changeHours (e) {
+     this.setState({hoursValue: e.target.value});
   }
 
   render() {
     return (
       <div>
-        <form onSubmit={this.onFormSubmit}>
-          <label>Monday
-            <input type="text" ref="monday"></input>
-          </label>
-          <label>Tuesday
-            <input type="text" ref="tuesday"></input>
-          </label>
-          <label>Wednesday
-            <input type="text" ref="wednesday"></input>
-          </label>
-          <label>Thursday
-            <input type="text" ref="thursday"></input>
-          </label>
-          <label>Friday
-            <input type="text" ref="friday"></input>
-          </label>
-          <button>Submit</button>
-        </form>
+        <label>{this.props.labelName}
+          <input type="text" ref={this.props.ref} value={this.state.hoursValue} onChange={this.changeHours}/>
+        </label>
       </div>
     );
   }

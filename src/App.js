@@ -1,17 +1,36 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Day from './components/Day.js';
+import Week from './components/Week.js';
 
 class App extends Component {
+
   render() {
+
+    var weekdays = [{
+      fieldLabel: "Monday",
+      fieldRef: "monday"
+    }, {
+      fieldLabel: "Tuesday",
+      fieldRef: "tuesday"
+    }, {
+      fieldLabel: "Wednesday",
+      fieldRef: "wednesday"
+    }, {
+      fieldLabel: "Thursday",
+      fieldRef: "thursday"
+    }, {
+      fieldLabel: "Friday",
+      fieldRef: "friday"
+    }]
+
     return (
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to the best planning tool ever!</h2>
         </div>
-        <Day/>
+        <Week weekdays={weekdays}/>
       </div>
     );
   }
