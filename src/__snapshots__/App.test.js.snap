@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a snapshot 1`] = `
+<div
+  className="App"
+>
+  <div
+    className="App-header"
+  >
+    <img
+      alt="logo"
+      className="App-logo"
+      src="logo.svg"
+    />
+    <h2>
+      Welcome to the best planning tool ever!
+    </h2>
+  </div>
+  <div>
+    <form
+      onSubmit={[Function]}
+    >
+      <div>
+        <label>
+          Monday
+          <input
+            onChange={[Function]}
+            type="text"
+            value=""
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          Tuesday
+          <input
+            onChange={[Function]}
+            type="text"
+            value=""
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          Wednesday
+          <input
+            onChange={[Function]}
+            type="text"
+            value=""
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          Thursday
+          <input
+            onChange={[Function]}
+            type="text"
+            value=""
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          Friday
+          <input
+            onChange={[Function]}
+            type="text"
+            value=""
+          />
+        </label>
+      </div>
+      <button>
+        Submit
+      </button>
+    </form>
+  </div>
+</div>
+`;
