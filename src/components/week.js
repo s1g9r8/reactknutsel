@@ -1,37 +1,42 @@
-
 import React from 'react';
-import Day from './Day.js';
+import moment from 'moment';
 
-export default class Week extends React.Component {
+const Week = ({id, weekNumber, year}) => {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: this.props.data
-    };
-    this.onFormSubmit = this.onFormSubmit.bind(this);
+  var createDate = (day) => {
+    return (moment().day(day).week(weekNumber).year(year).format('DD-MM'));
   }
 
-  onFormSubmit(e) {
-    e.preventDefault();
-    //TODO: samenstellen van dynamische variabele en hierover itereren. Ook checken of het een integer is anders foutmelding retourneren.
-    alert(Number(this.refs.monday.getDayData()) + Number(this.refs.tuesday.getDayData()) + Number(this.refs.wednesday.getDayData())
-    + Number(this.refs.thursday.getDayData()) + Number(this.refs.friday.getDayData()));
+  var saveHandler = () => {
+    alert('we gaan lekker saven');
   }
 
-  render() {
+  return (
+    <div>
+      <table>
+        <caption>Week {weekNumber}</caption>
+        <thead>
+          <th></th>
+          <th>Monday {createDate("Monday")}</th>
+          <th>Tuesday {createDate("Tuesday")}</th>
+          <th>Wednesday {createDate("Wednesday")}</th>
+          <th>Thursday {createDate("Thursday")}</th>
+          <th>Friday {createDate("Friday")}</th>
+        </thead>
+        <tbody>
+          <tr>
+            <th>project x</th>
+            <td><input type="text"/></td>
+            <td><input type="text"/></td>
+            <td><input type="text"/></td>
+            <td><input type="text"/></td>
+            <td><input type="text"/></td>
+          </tr>
+        </tbody>
+      </table>
+      <button type="button" onClick={saveHandler}>save</button>
+    </div>
+  );
+};
 
-    var days = this.props.weekdays.map(function(weekday) {
-      return <Day labelName={weekday.fieldLabel} ref={weekday.fieldRef}/>
-    });
-
-    return (
-      <div>
-        <form onSubmit={this.onFormSubmit}>
-          {days}
-          <button>Submit</button>
-        </form>
-      </div>
-    );
-  }
-}
+export default Week;
