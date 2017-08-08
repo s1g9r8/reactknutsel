@@ -1,14 +1,20 @@
+
 import React from 'react';
 import moment from 'moment';
 
-const Week = ({id, weekNumber, year}) => {
+
+const Week = ({id, weekNumber, year, monday, tuesday, wednesday, thursday, friday, actions, setHours, saveHours}) => {
+
+  var handleSaveHours = () => {
+    saveHours (id);
+  }
+
+  var handleChangeHours = (e) => {
+    setHours (id, e.target.name, e.target.value);
+  }
 
   var createDate = (day) => {
     return (moment().day(day).week(weekNumber).year(year).format('DD-MM'));
-  }
-
-  var saveHandler = () => {
-    alert('we gaan lekker saven');
   }
 
   return (
@@ -26,15 +32,15 @@ const Week = ({id, weekNumber, year}) => {
         <tbody>
           <tr>
             <th>project x</th>
-            <td><input type="text"/></td>
-            <td><input type="text"/></td>
-            <td><input type="text"/></td>
-            <td><input type="text"/></td>
-            <td><input type="text"/></td>
+            <td><input type="text" name="monday" value={monday} onChange={handleChangeHours}/></td>
+            <td><input type="text" name="tuesday" value={tuesday} onChange={handleChangeHours}/></td>
+            <td><input type="text" name="wednesday" value={wednesday} onChange={handleChangeHours}/></td>
+            <td><input type="text" name="thursday" value={thursday} onChange={handleChangeHours}/></td>
+            <td><input type="text" name="friday" value={friday} onChange={handleChangeHours}/></td>
           </tr>
         </tbody>
       </table>
-      <button type="button" onClick={saveHandler}>save</button>
+      <button type="button" onClick={handleSaveHours}>save</button>
     </div>
   );
 };

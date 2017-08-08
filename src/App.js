@@ -2,14 +2,14 @@ import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import {Provider} from 'react-redux';
-import {createStore} from 'redux';
+import {createStore, compose} from 'redux';
 import uuid from 'uuid';
 
-import {weeksReducer} from './reducers/reducers.js';
+import {weekListReducer} from './reducers/reducers.js';
 import WeekList from './components/WeekList.js'
 
-
-var store = createStore(weeksReducer, {});
+var store = createStore(weekListReducer, {}, compose(
+  window.devToolsExtension? window.devToolsExtension() : f => f));
 
 class App extends Component {
   render() {

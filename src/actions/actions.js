@@ -5,6 +5,15 @@ export var addWeek = () => {
   };
 };
 
+export var addWeekHours = (id, monday, tuesday) => {
+  return {
+    type: 'ADD_WEEK_HOURS',
+    id,
+    monday,
+    tuesday
+  };
+};
+
 export var addProject = (project) => {
   return {
     type: 'ADD_PROJECT',

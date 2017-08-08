@@ -15,14 +15,45 @@ const WeekList = ({state, actions}) => {
     actions.addWeek();
   };
 
-  var handleCalculate = (weeks) => {
-    //TODO: calculate total hours over weeks
+  var handleCalculateTotalHours = () => {
+    if (Object.keys(weeks).length >= 1) {
+      var sum = weeks.reduce((total, obj) => {
+        return total + Number(obj.monday) + Number(obj.tuesday) + Number(obj.wednesday) + Number(obj.thursday) + Number(obj.friday)
+      }, 0);
+      if (!isNaN(sum)) {
+        alert(sum);
+      } else {
+        alert('Je hebt nog niet alle uren ingevuld, ga dat eens snel doen');
+      }
+    }
+  };
+
+  var setHoursToState = (id, name, value) => {
+    let i = weeks.findIndex(obj => obj.id === id)
+    switch (name) {
+      case 'monday':
+        return weeks[i].monday = value;
+      case 'tuesday':
+        return weeks[i].tuesday = value;
+      case 'wednesday':
+        return weeks[i].wednesday = value;
+      case 'thursday':
+        return weeks[i].thursday = value;
+      case 'friday':
+        return weeks[i].friday = value;
+      default:
+        return '';
+    }
+  };
+
+  var saveHoursToStore = (weekId) => {
+    // TODO: function to save hours to the store
   };
 
   var renderWeeks = () => {
     if (Object.keys(weeks).length >= 1) {
       return weeks.map((week) => {
-        return (<Week key={week.id} {...week}/>);
+        return (<Week key={week.id} {...week} setHours={setHoursToState} saveHours={saveHoursToStore}/>);
       });
     }
   };
@@ -32,7 +63,7 @@ const WeekList = ({state, actions}) => {
       <div>{renderWeeks()}</div>
       <div>
         <button type="button" onClick={handleAddWeek}>add week</button>
-        <button type="button" onClick={handleCalculate}>calculate</button>
+        <button type="button" onClick={handleCalculateTotalHours}>calculate</button>
       </div>
     </div>
   );
