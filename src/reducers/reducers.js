@@ -18,30 +18,20 @@ export var weekListReducer = (state = [], action) => {
         }
       ];
     case 'UPDATE_WEEK':
-    // TODO: werkt nog niet, nakijken nog
-      return () => {
-        let i = state.findIndex(obj => obj.id === action.id);
-        if (i !== undefined) {
-          state[i].monday = action.monday,
-            state[i].tuesday = action.tuesday
+      return state.map((week) => {
+        if (week.id === action.id) {
+          return {
+            ...week,
+            monday: action.week.monday,
+            tuesday: action.week.tuesday,
+            wednesday: action.week.wednesday,
+            thursday: action.week.thursday,
+            friday: action.week.friday
+          };
+        } else {
+          return week;
         }
-        return state
-      }
-    default:
-      return state;
-  }
-};
-
-
-export var projectReducer = (state = [], action) => {
-  switch (action.type) {
-    case 'ADD_PROJECT':
-      return [
-        ...state,
-        {
-
-        }
-      ];
+      });
     default:
       return state;
   }

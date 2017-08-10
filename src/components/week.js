@@ -3,14 +3,14 @@ import React from 'react';
 import moment from 'moment';
 
 
-const Week = ({id, weekNumber, year, monday, tuesday, wednesday, thursday, friday, actions, setHours, saveHours}) => {
-
-  var handleSaveHours = () => {
-    saveHours (id);
-  }
+const Week = ({id, weekNumber, year, monday, tuesday, wednesday, thursday, friday, actions, setHours, saveWeekHours}) => {
 
   var handleChangeHours = (e) => {
     setHours (id, e.target.name, e.target.value);
+  }
+
+  var handleSaveHours = () =>{
+    saveWeekHours (id);
   }
 
   var createDate = (day) => {
@@ -43,6 +43,11 @@ const Week = ({id, weekNumber, year, monday, tuesday, wednesday, thursday, frida
       <button type="button" onClick={handleSaveHours}>save</button>
     </div>
   );
+};
+
+Week.propTypes = {
+  monday: React.PropTypes.number,
+  tuesday: React.PropTypes.number
 };
 
 export default Week;

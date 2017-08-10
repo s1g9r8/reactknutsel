@@ -1,8 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import uuid from 'uuid';
-import moment from 'moment';
 
 import Week from './Week.js';
 import * as Actions from './../actions/actions.js';
@@ -28,7 +26,7 @@ const WeekList = ({state, actions}) => {
     }
   };
 
-  var setHoursToState = (id, name, value) => {
+  var setHours = (id, name, value) => {
     let i = weeks.findIndex(obj => obj.id === id)
     switch (name) {
       case 'monday':
@@ -46,14 +44,15 @@ const WeekList = ({state, actions}) => {
     }
   };
 
-  var saveHoursToStore = (weekId) => {
-    // TODO: function to save hours to the store
+  var saveWeekHours = (id) => {
+    let i = weeks.findIndex(obj => obj.id === id)
+    actions.updateWeek(id, weeks[i]);
   };
 
   var renderWeeks = () => {
     if (Object.keys(weeks).length >= 1) {
       return weeks.map((week) => {
-        return (<Week key={week.id} {...week} setHours={setHoursToState} saveHours={saveHoursToStore}/>);
+        return (<Week key={week.id} {...week} setHours={setHours} saveWeekHours={saveWeekHours} />);
       });
     }
   };
