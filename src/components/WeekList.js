@@ -47,12 +47,6 @@ const WeekList = ({state, actions}) => {
     actions.updateWeek(id, weeks[i]);
   };
 
-
-  // var saveWeekHours = (id) => {
-  //   let i = weeks.findIndex(obj => obj.id === id)
-  //   actions.updateWeek(id, weeks[i]);
-  // };
-
   var createDate = (day, weekNumber, year) => {
     return (moment().day(day).week(weekNumber).year(year).format('DD-MM'));
   }
