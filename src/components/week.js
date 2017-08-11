@@ -6,6 +6,7 @@ import moment from 'moment';
 const Week = ({id, weekNumber, year, monday, tuesday, wednesday, thursday, friday, actions, setHours, saveWeekHours}) => {
 
   var handleChangeHours = (e) => {
+    // TODO: check input type is number
     setHours (id, e.target.name, e.target.value);
   }
 
@@ -43,11 +44,6 @@ const Week = ({id, weekNumber, year, monday, tuesday, wednesday, thursday, frida
       <button type="button" onClick={handleSaveHours}>save</button>
     </div>
   );
-};
-
-Week.propTypes = {
-  monday: React.PropTypes.number,
-  tuesday: React.PropTypes.number
 };
 
 export default Week;
