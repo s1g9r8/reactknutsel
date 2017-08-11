@@ -1,6 +1,8 @@
+
 import React from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import moment from 'moment';
 
 import Week from './Week.js';
 import * as Actions from './../actions/actions.js';
@@ -42,17 +44,28 @@ const WeekList = ({state, actions}) => {
       default:
         return '';
     }
-  };
-
-  var saveWeekHours = (id) => {
-    let i = weeks.findIndex(obj => obj.id === id)
     actions.updateWeek(id, weeks[i]);
   };
+
+
+  // var saveWeekHours = (id) => {
+  //   let i = weeks.findIndex(obj => obj.id === id)
+  //   actions.updateWeek(id, weeks[i]);
+  // };
+
+  var createDate = (day, weekNumber, year) => {
+    return (moment().day(day).week(weekNumber).year(year).format('DD-MM'));
+  }
 
   var renderWeeks = () => {
     if (Object.keys(weeks).length >= 1) {
       return weeks.map((week) => {
-        return (<Week key={week.id} {...week} setHours={setHours} saveWeekHours={saveWeekHours} />);
+        week.mondayDate = createDate("Monday", week.weekNumber, week.year);
+        week.tuesdayDate = createDate("Tuesday", week.weekNumber, week.year);
+        week.wednesdayDate = createDate("Wednesday", week.weekNumber, week.year);
+        week.thursdayDate = createDate("Thursday", week.weekNumber, week.year);
+        week.fridayDate = createDate("Friday", week.weekNumber, week.year);
+        return (<Week key={week.id} {...week} setHours={setHours} />);
       });
     }
   };

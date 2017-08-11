@@ -1,21 +1,27 @@
-
 import React from 'react';
-import moment from 'moment';
 
+const Week = (props) => {
 
-const Week = ({id, weekNumber, year, monday, tuesday, wednesday, thursday, friday, actions, setHours, saveWeekHours}) => {
+  var {
+    id,
+    weekNumber,
+    year,
+    monday,
+    tuesday,
+    wednesday,
+    thursday,
+    friday,
+    mondayDate,
+    tuesdayDate,
+    wednesdayDate,
+    thursdayDate,
+    fridayDate,
+    actions,
+    setHours
+  } = props;
 
   var handleChangeHours = (e) => {
-    // TODO: check input type is number
-    setHours (id, e.target.name, e.target.value);
-  }
-
-  var handleSaveHours = () =>{
-    saveWeekHours (id);
-  }
-
-  var createDate = (day) => {
-    return (moment().day(day).week(weekNumber).year(year).format('DD-MM'));
+    setHours(id, e.target.name, e.target.value);
   }
 
   return (
@@ -24,11 +30,11 @@ const Week = ({id, weekNumber, year, monday, tuesday, wednesday, thursday, frida
         <caption>Week {weekNumber}</caption>
         <thead>
           <th></th>
-          <th>Monday {createDate("Monday")}</th>
-          <th>Tuesday {createDate("Tuesday")}</th>
-          <th>Wednesday {createDate("Wednesday")}</th>
-          <th>Thursday {createDate("Thursday")}</th>
-          <th>Friday {createDate("Friday")}</th>
+          <th>Monday {mondayDate}</th>
+          <th>Tuesday {tuesdayDate}</th>
+          <th>Wednesday {wednesdayDate}</th>
+          <th>Thursday {thursdayDate}</th>
+          <th>Friday {fridayDate}</th>
         </thead>
         <tbody>
           <tr>
@@ -41,7 +47,6 @@ const Week = ({id, weekNumber, year, monday, tuesday, wednesday, thursday, frida
           </tr>
         </tbody>
       </table>
-      <button type="button" onClick={handleSaveHours}>save</button>
     </div>
   );
 };
