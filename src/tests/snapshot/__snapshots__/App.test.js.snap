@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a snapshot 1`] = `
+<div>
+  <div>
+    <a
+      className="active"
+      href="/"
+      onClick={[Function]}
+      style={
+        Object {
+          "fontWeight": "bold",
+        }
+      }
+    >
+      Planning
+    </a>
+    <a
+      className={undefined}
+      href="/employees"
+      onClick={[Function]}
+      style={undefined}
+    >
+      Employees
+    </a>
+    <a
+      className={undefined}
+      href="/projects"
+      onClick={[Function]}
+      style={undefined}
+    >
+      Projects
+    </a>
+  </div>
+  <div>
+    <div />
+    <div>
+      <button
+        onClick={[Function]}
+        type="button"
+      >
+        add week
+      </button>
+      <button
+        onClick={[Function]}
+        type="button"
+      >
+        calculate
+      </button>
+    </div>
+  </div>
+</div>
+`;

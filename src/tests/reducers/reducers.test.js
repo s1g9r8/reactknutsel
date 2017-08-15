@@ -18,21 +18,27 @@ describe('Reducers', () => {
 
 
     it('should update hours for the weekdays', () => {
-      var week = {
+      var week = [{
         id: '123',
         weekNumber: 3,
-        year: 2017
-      };
+        year: 2017,
+        monday: 0,
+        tuesday: 0,
+        wednesday: 0,
+        thursday: 0,
+        friday: 0
+      }];
       var action = {
         type: 'UPDATE_WEEK',
         id: '123',
-        monday: 1,
-        tuesday: 2,
-        wednesday: 3,
-        thursday: 4,
-        friday: 5
+        week: {monday: 1,
+               tuesday: 2,
+               wednesday: 3,
+               thursday: 4,
+               friday: 5
+             }
       };
-      res = reducers.weekListReducer(df(week), df(action));
+      var res = reducers.weekListReducer(df(week), df(action));
 
       expect(res[0].monday).toEqual(1);
       expect(res[0].tuesday).toEqual(2);
