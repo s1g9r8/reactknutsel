@@ -6,6 +6,7 @@ import moment from 'moment';
 
 import Week from './Week.js';
 import * as Actions from './../actions/actions.js';
+import * as PlanboardAPI from './../api/PlanboardAPI.js';
 
 const WeekList = ({state, actions}) => {
 
@@ -47,6 +48,7 @@ const WeekList = ({state, actions}) => {
         break;
     }
     actions.updateWeek(id, weeks[i]);
+    PlanboardAPI.setWeeks(weeks);
   };
 
   var createDate = (day, weekNumber, year) => {
