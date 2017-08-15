@@ -20,11 +20,7 @@ const WeekList = ({state, actions}) => {
       var sum = weeks.reduce((total, obj) => {
         return total + Number(obj.monday) + Number(obj.tuesday) + Number(obj.wednesday) + Number(obj.thursday) + Number(obj.friday)
       }, 0);
-      if (!isNaN(sum)) {
-        alert(sum);
-      } else {
-        alert('Je hebt nog niet alle uren ingevuld, ga dat eens snel doen');
-      }
+      isNaN(sum)? alert('Je hebt nog niet alle uren ingevuld, ga dat eens snel doen') : alert(sum)
     }
   };
 
@@ -32,17 +28,23 @@ const WeekList = ({state, actions}) => {
     let i = weeks.findIndex(obj => obj.id === id)
     switch (name) {
       case 'monday':
-        return weeks[i].monday = value;
+        weeks[i].monday = value;
+        break;
       case 'tuesday':
-        return weeks[i].tuesday = value;
+        weeks[i].tuesday = value;
+        break;
       case 'wednesday':
-        return weeks[i].wednesday = value;
+        weeks[i].wednesday = value;
+        break;
       case 'thursday':
-        return weeks[i].thursday = value;
+        weeks[i].thursday = value;
+        break;
       case 'friday':
-        return weeks[i].friday = value;
+        weeks[i].friday = value;
+        break;
       default:
-        return '';
+        ''
+        break;
     }
     actions.updateWeek(id, weeks[i]);
   };

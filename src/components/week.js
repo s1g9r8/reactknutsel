@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 const Week = (props) => {
@@ -16,7 +17,6 @@ const Week = (props) => {
     wednesdayDate,
     thursdayDate,
     fridayDate,
-    actions,
     setHours
   } = props;
 

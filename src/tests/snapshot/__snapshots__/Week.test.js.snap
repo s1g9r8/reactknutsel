@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render a week 1`] = `
+<div>
+  <table>
+    <caption>
+      Week 
+    </caption>
+    <thead>
+      <th />
+      <th>
+        Monday 
+      </th>
+      <th>
+        Tuesday 
+      </th>
+      <th>
+        Wednesday 
+      </th>
+      <th>
+        Thursday 
+      </th>
+      <th>
+        Friday 
+      </th>
+    </thead>
+    <tbody>
+      <tr>
+        <th>
+          project x
+        </th>
+        <td>
+          <input
+            name="monday"
+            onChange={[Function]}
+            type="text"
+            value={undefined}
+          />
+        </td>
+        <td>
+          <input
+            name="tuesday"
+            onChange={[Function]}
+            type="text"
+            value={undefined}
+          />
+        </td>
+        <td>
+          <input
+            name="wednesday"
+            onChange={[Function]}
+            type="text"
+            value={undefined}
+          />
+        </td>
+        <td>
+          <input
+            name="thursday"
+            onChange={[Function]}
+            type="text"
+            value={undefined}
+          />
+        </td>
+        <td>
+          <input
+            name="friday"
+            onChange={[Function]}
+            type="text"
+            value={undefined}
+          />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
