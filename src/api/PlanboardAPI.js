@@ -19,9 +19,20 @@ export var setWeeks = (weeks) => {
   }
 };
 
-// export var setprojects = (projects) => {
-//   if ($.isArray(projects)) {
-//     localStorage.setItem('projects', JSON.stringify(projects));
-//     return projecs;
-//   }
-// };
+export var getProjects = () => {
+  var stringProjects = localStorage.getItem('projects');
+  var projects = [];
+
+  try {
+    projects = JSON.parse(stringProjects);
+  } catch (e) {}
+
+  return $.isArray(projects) ? projects : [];
+};
+
+export var setProjects = (projects) => {
+  if ($.isArray(projects)) {
+    localStorage.setItem('projects', JSON.stringify(projects));
+    return projects;
+  }
+};

@@ -41,7 +41,7 @@ const AddProject = ({ name, customer, startDate, endDate, addProject, changeAddP
           <label for="endDate">Enddate</label>
           <DatePicker name="endDate" value={endDate} onChange={handleOnChangeEndDate} />
         </div>
-        <button>Add project</button>
+        <button>Save</button>
       </form>
     </div>
   );

@@ -6,14 +6,17 @@ import { bindActionCreators } from 'redux';
 import ProjectList from './ProjectList.js';
 import AddProject from './AddProject.js';
 import * as Actions from './../../actions/actions.js';
+import * as PlanboardAPI from './../../api/PlanboardAPI.js';
 
 
 const Projects = ({state, actions}) => {
 
+  var projects = state.projects;
   var newProject = {};
 
   var addProject = () => {
     actions.addProject(newProject.name, newProject.customer, newProject.startDate, newProject.endDate);
+    //PlanboardAPI.setProjects([{projects}, {...newProject}]);
   }
 
   var removeProject = (id) => {
@@ -43,7 +46,7 @@ const Projects = ({state, actions}) => {
   return (
     <div className="project-page">
        <h1>Projects</h1>
-       <ProjectList projects={state.projects} removeProject={removeProject}/>
+       <ProjectList projects={projects} removeProject={removeProject}/>
        <AddProject {...newProject} addProject={addProject} changeAddProjectField={changeAddProjectField} />
     </div>
   );

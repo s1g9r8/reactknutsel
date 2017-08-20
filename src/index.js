@@ -10,7 +10,13 @@ import projectsReducer from './reducers/projectsReducer.js';
 import * as PlanboardAPI from './api/PlanboardAPI.js';
 
 
-var initialState = PlanboardAPI.getWeeks();
+var initialWeeks = PlanboardAPI.getWeeks();
+var initialProjects = PlanboardAPI.getProjects();
+
+var initialState = {
+  weeks: initialWeeks,
+  projects: initialProjects
+}
 
 var reducer = combineReducers({
   weeks: weekListReducer,
