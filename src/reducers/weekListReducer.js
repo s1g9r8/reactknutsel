@@ -1,7 +1,7 @@
 import uuid from 'uuid';
 import moment from 'moment';
 
-export var weekListReducer = (state = [], action) => {
+var weekListReducer = (state = [], action) => {
 
   var weekNumber = (state.length ? (state[state.length - 1].weekNumber + 1) : moment().week())
 
@@ -36,3 +36,5 @@ export var weekListReducer = (state = [], action) => {
       return state;
   }
 };
+
+export default weekListReducer;

@@ -12,3 +12,19 @@ export var updateWeek = (id, week) => {
     week
   };
 };
+
+export var addProject = (name, customer, startDate, endDate) => {
+  return {
+    type: 'ADD_PROJECT',
+    name,
+    startDate,
+    endDate
+  };
+};
+
+export var removeProject = (id) => {
+  return {
+    type: 'REMOVE_PROJECT',
+    id
+  };
+};

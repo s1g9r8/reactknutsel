@@ -1,21 +1,26 @@
 
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import bootstrap from 'bootstrap/dist/css/bootstrap.css';
 
-import Nav from './components/Nav.js';
-import WeekList from './components/WeekList.js';
-import Employees from './components/Employees.js';
-import Projects from './components/Projects.js';
+import Nav from './components/common/Nav.js';
+import WeekList from './components/planning/WeekList.js';
+import Employees from './components/employees/Employees.js';
+import Projects from './components/projects/Projects.js';
+import './App.css';
+
 
 
 const App = () => {
   return (
     <Router>
-      <div>
+      <div className="app">
         <Nav />
-        <Route exact path="/" component={WeekList}/>
-        <Route path="/employees" component={Employees}/>
-        <Route path="/projects" component={Projects}/>
+          <div className="content container">
+            <Route exact path="/" component={WeekList}/>
+            <Route path="/employees" component={Employees}/>
+            <Route path="/projects" component={Projects}/>
+          </div>
       </div>
     </Router>
   );

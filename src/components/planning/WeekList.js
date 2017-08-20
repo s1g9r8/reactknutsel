@@ -5,12 +5,12 @@ import { bindActionCreators } from 'redux';
 import moment from 'moment';
 
 import Week from './Week.js';
-import * as Actions from './../actions/actions.js';
-import * as PlanboardAPI from './../api/PlanboardAPI.js';
+import * as Actions from './../../actions/actions.js';
+import * as PlanboardAPI from './../../api/PlanboardAPI.js';
 
 const WeekList = ({state, actions}) => {
 
-  var weeks = state;
+  var weeks = state.weeks;
 
   var handleAddWeek = () => {
     actions.addWeek();
@@ -70,6 +70,7 @@ const WeekList = ({state, actions}) => {
 
   return (
     <div>
+      <h1>Planning</h1>
       <div>{renderWeeks()}</div>
       <div>
         <button type="button" onClick={handleAddWeek}>add week</button>

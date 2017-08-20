@@ -2,15 +2,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, compose } from 'redux';
+import { combineReducers, createStore, compose } from 'redux';
 
 import App from './App';
-import { weekListReducer } from './reducers/reducers.js';
+import weekListReducer from './reducers/weekListReducer.js';
+import projectsReducer from './reducers/projectsReducer.js';
 import * as PlanboardAPI from './api/PlanboardAPI.js';
+
 
 var initialState = PlanboardAPI.getWeeks();
 
-var store = createStore(weekListReducer, initialState, compose(
+var reducer = combineReducers({
+  weeks: weekListReducer,
+  projects: projectsReducer
+});
+
+var store = createStore(reducer, initialState, compose(
   window.devToolsExtension? window.devToolsExtension() : f => f));
 
 ReactDOM.render(
