@@ -8,11 +8,36 @@ h1 {
   color: var(--main-color);
 }
 
+.app {
+  position: fixed;
+  width: 100%;
+}
+
 .header {
   background-color: white;
   box-shadow: 0 0 15px 1px rgba(0,0,0,.1);
   padding-top: 25px;
   padding-bottom: 25px;
+}
+
+.modal-wrapper {
+  position: fixed;
+  z-index: 9999;
+  box-shadow: 0 0 15px 1px rgba(0,0,0,.1);
+  background-color: white;
+  margin-top: 50px;
+  width: 50%;
+}
+
+.model-header-wrapper {
+  border-bottom: solid var(--main-color) thin;
+  margin: 10px;
+}
+
+.modal-footer-wrapper {
+  border-top: solid var(--main-color) thin;
+  margin: 10px;
+  align-content: flex-end;
 }
 
 .navigation a {

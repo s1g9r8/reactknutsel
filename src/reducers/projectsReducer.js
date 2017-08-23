@@ -1,4 +1,3 @@
-
 import uuid from 'uuid';
 
 var projectsReducer = (state = [], action) => {
@@ -9,10 +8,25 @@ var projectsReducer = (state = [], action) => {
         {
           id: uuid(),
           name: action.name,
+          customer: action.customer,
           startDate: action.startDate,
           endDate: action.endDate
         }
       ];
+    case 'UPDATE_PROJECT':
+      return state.map((project) => {
+        if (project.id === action.id) {
+          return {
+            ...project,
+            name: action.project.name,
+            customer: action.project.customer,
+            startDate: action.project.startDate,
+            endDate: action.project.endDate
+          };
+        } else {
+          return project;
+        }
+      });
     case 'REMOVE_PROJECT':
       return state.filter((project) => project.id !== action.id);
     default:

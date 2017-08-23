@@ -31,6 +31,7 @@ export var getProjects = () => {
 };
 
 export var setProjects = (projects) => {
+  //alert("API " + JSON.stringify(projects));
   if ($.isArray(projects)) {
     localStorage.setItem('projects', JSON.stringify(projects));
     return projects;

@@ -4,6 +4,8 @@ import DatePicker from 'react-bootstrap-date-picker';
 
 const AddProject = ({ name, customer, startDate, endDate, addProject, changeAddProjectField }) => {
 
+  alert("in add");
+
   var handleSubmit = (e) => {
     e.preventDefault();
     document.getElementById("addProjectForm").reset();
@@ -24,6 +26,8 @@ const AddProject = ({ name, customer, startDate, endDate, addProject, changeAddP
 
   return (
     <div className="project-form">
+      <span>this part becomes a popup</span>
+
       <form id="addProjectForm" onSubmit={handleSubmit}>
         <div className="project-form-item">
           <label for="projectName">Projectname</label>

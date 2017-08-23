@@ -1,12 +1,12 @@
 import React from 'react';
 
-const ProjectList = ({ projects, removeProject }) => {
+const ProjectList = ({ projects, removeProject, editProject }) => {
 
-  //alert(JSON.stringify(projects));
+  //alert("projectList " + JSON.stringify(projects));
   var renderProjects = () => {
     if (Object.keys(projects).length >= 1) {
       return projects.map((project) => {
-        return (<Project key={project.id} {...project} removeProject={removeProject}/>);
+        return (<Project key={project.id} {...project} removeProject={removeProject} editProject={editProject}/>);
       });
     }
   };
@@ -21,10 +21,14 @@ export default ProjectList;
 
 
 // Project used in ProjectList
-const Project = ({ id, name, customer, startDate, endDate, removeProject}) => {
+const Project = ({ id, name, customer, startDate, endDate, removeProject, editProject}) => {
 
-  var handleOnclick = () => {
+  var handleOnclickRemove = () => {
     removeProject(id);
+  }
+
+  var handleOnclickEdit = () => {
+    editProject(id);
   }
 
   return (
@@ -33,7 +37,8 @@ const Project = ({ id, name, customer, startDate, endDate, removeProject}) => {
       <span>{customer}</span>
       <span>{startDate}</span>
       <span>{endDate}</span>
-      <button onClick={handleOnclick}>remove</button>
+      <button onClick={handleOnclickRemove}>remove</button>
+      <button onClick={handleOnclickEdit}>edit</button>
     </div>
   );
 }
