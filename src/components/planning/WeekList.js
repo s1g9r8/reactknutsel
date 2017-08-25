@@ -48,7 +48,7 @@ const WeekList = ({state, actions}) => {
         break;
     }
     actions.updateWeek(id, weeks[i]);
-    PlanboardAPI.setWeeks(weeks);
+    //PlanboardAPI.setWeeks(weeks);
   };
 
   var createDate = (day, weekNumber, year) => {

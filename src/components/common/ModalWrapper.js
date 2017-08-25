@@ -1,25 +1,26 @@
 
 import React from 'react';
-const {PropTypes} = React;
+const { PropTypes } = React;
+
+/*
+// implement the functions showOk and closeModal in the parent class
+*/
 
 const ModalWrapper = props => {
 
-  const onOk = () => {
-    props.onOk();
-    props.hideModal();
-  };
-
   const okButton = props.showOk? (
-    <button onClick={onOk} disabled={props.okDisabled}>{props.okText}</button>
+    <button onClick={props.onOk} disabled={props.okDisabled}>{props.okText}</button>
     ) : null;
 
-return (
+  return (
     <div className="modal-wrapper">
       <header className="model-header-wrapper">
         <h1>{props.title}</h1>
         <button onClick={props.closeModal}>Close</button>
       </header>
-      {props.children}
+      <div className="model-content-wrapper">
+        {props.children}
+      </div>
       <footer className="modal-footer-wrapper">
         {okButton}
       </footer>

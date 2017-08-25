@@ -34,6 +34,11 @@ h1 {
   margin: 10px;
 }
 
+.modal-content-wrapper {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
 .modal-footer-wrapper {
   border-top: solid var(--main-color) thin;
   margin: 10px;

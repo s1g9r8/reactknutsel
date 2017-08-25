@@ -1,11 +1,11 @@
 // MODALS
-export var showModalAddProject = (modal) => {
+export var showModal = (currentModal, modalProps) => {
   return {
     type: 'SET_MODAL',
-    modal
+    currentModal,
+    modalProps
   };
 };
-
 
 // WEEKS
 export var addWeek = () => {
@@ -34,11 +34,14 @@ export var addProject = (name, customer, startDate, endDate) => {
   };
 };
 
-export var updateProject = (id, project) => {
+export var updateProject = (id, name, customer, startDate, endDate) => {
   return {
     type: 'UPDATE_PROJECT',
     id,
-    project
+    name,
+    customer,
+    startDate,
+    endDate
   };
 };
 

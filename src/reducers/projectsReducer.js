@@ -18,10 +18,10 @@ var projectsReducer = (state = [], action) => {
         if (project.id === action.id) {
           return {
             ...project,
-            name: action.project.name,
-            customer: action.project.customer,
-            startDate: action.project.startDate,
-            endDate: action.project.endDate
+            name: action.name,
+            customer: action.customer,
+            startDate: action.startDate,
+            endDate: action.endDate
           };
         } else {
           return project;

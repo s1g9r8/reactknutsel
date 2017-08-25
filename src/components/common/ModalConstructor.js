@@ -1,18 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import SignIn from './SignIn.js';
+import ProjectModal from './../projects/ProjectModal.js';
 
-const ModalConstructor = ({state}) => {
+/*
+// Inspired by: https://codeburst.io/modals-in-react-f6c3ff9f4701
+// Add for each modal a case in the switch
+*/
 
-  switch (state.modal) {
+const ModalConstructor = ({props}) => {
+
+  var {modal} = props
+
+  switch (modal.currentModal) {
     case 'PROJECT':
-      return <SignIn {...state}/>;
+      return <ProjectModal />;
     default:
       return null;
   }
 }
 
-const mapStateToProps = (state) => ({state});
+const mapStateToProps = (props) => ({props});
 
 export default connect(mapStateToProps, null)(ModalConstructor);
