@@ -29,6 +29,7 @@ const Projects = ({state, actions}) => {
 
   var removeProject = (id) => {
     actions.removeProject(id);
+    //PlanboardAPI.removeProject(id);
   }
 
   return (

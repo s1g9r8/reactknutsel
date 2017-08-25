@@ -9,21 +9,15 @@ const { PropTypes } = React;
 const ModalWrapper = props => {
 
   const okButton = props.showOk? (
-    <button onClick={props.onOk} disabled={props.okDisabled}>{props.okText}</button>
+    <button className="modal-ok" onClick={props.onOk} disabled={props.okDisabled}>{props.okText}</button>
     ) : null;
 
   return (
     <div className="modal-wrapper">
-      <header className="model-header-wrapper">
         <h1>{props.title}</h1>
-        <button onClick={props.closeModal}>Close</button>
-      </header>
-      <div className="model-content-wrapper">
+        <button className="modal-close" onClick={props.closeModal}>Close</button>
         {props.children}
-      </div>
-      <footer className="modal-footer-wrapper">
         {okButton}
-      </footer>
     </div>
   );
 };
