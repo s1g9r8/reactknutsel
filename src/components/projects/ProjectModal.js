@@ -7,13 +7,20 @@ import ModalWrapper from './../common/ModalWrapper.js';
 import * as Actions from './../../actions/actions.js';
 import * as PlanboardAPI from './../../api/PlanboardAPI.js';
 import * as Constants from './../common/Constants.js';
+import * as Utils from './../common/ValidationUtils.js';
 
 
 const ProjectModal = ({state, actions}) => {
 
+  // Initialize state which is modalProps and the validation object
   var modalProps = state.modal.modalProps;
-  modalProps.okDisabled = true;
+  var errorText = Constants.projectModalErrorText;
+  modalProps.validation = (modalProps.validation !== undefined) ?  modalProps.validation : {nameValid: undefined,
+                                                                                            customerValid: undefined,
+                                                                                            startDateValid: undefined,
+                                                                                            endDateValid: true};
 
+  // Implement button actions from the ModalWrapper
   var closeModal = () => {
       actions.showModal('default');
   }
@@ -27,111 +34,86 @@ const ProjectModal = ({state, actions}) => {
     }
     closeModal();
   }
-  // function makeNull(obj, label) {
-  //   if (obj[label] === undefined) {
-  //       obj[label] = null;
-  //   }
-  // }
-  // var varB = { abc: undefined }
-  // makeNull(varB, 'abc');
 
-  var validateField = (field, label, value, errorText, condition) => {
-    //alert(obj[label]);
+  var setConditionForEndDate = (modalProps, value) => {
+    if (modalProps.startDate !== undefined && modalProps.startDate !== null ) {
+      if (value < modalProps.startDate) {
+        return false;
+      }
+    }
+    return true;
+  };
 
-    // if (condition) {
-    //   fieldValid = true;
-    //   //alert(modalProps.nameValid);
-    //   errorFieldName = undefined;
-    // }
-    // else {
-    //   fieldValid = false;
-    //   //alert(modalProps.nameValid);
-    //   errorFieldName = errorText;
-    // }
-    // fieldName = value;
-  }
-
-  var changeAddProjectField = (name, value) => {
+  // Validate and set values to state after a change in the input field
+  var changeInputField = (name, value) => {
     switch (name) {
       case 'projectName': {
-        // let condition = value.length < 3;
-        // var b = {m1: modalProps.name, m2: modalProps.nameValid, m3: modalProps.errorTextName}
-        // validateField('modalProps.name', value, 'fout', condition);
-
-        if (value.length < 5) {
-          modalProps.nameValid = true;
-          modalProps.errorTextName = '';
+         modalProps = Utils.validateField(modalProps, 'nameValid', 'errorTextName', errorText.name, (value.length < 26), false, value);
+         modalProps.name = value;
         }
-        else {
-          modalProps.nameValid = false;
-          modalProps.errorTextName = "name is only 25 characters";
+        break;
+      case 'customer': {
+          modalProps = Utils.validateField(modalProps, 'customerValid', 'errorTextCustomer', errorText.customer, (value.length < 26), false, value);
+          modalProps.customer = value;
         }
-}
         break;
-      case 'customer':
-        modalProps.customer = value;
+      case 'startDate': {
+          modalProps = Utils.validateField(modalProps, 'startDateValid', 'errorTextStartDate', errorText.startDate, true, false, value);
+          modalProps.startDate = value;
+          // TODO: find out why this event trigger is not working!!
+          document.getElementById('endDate').dispatchEvent(new Event('change',{bubbles: true}));
+        }
         break;
-      case 'startDate':
-        modalProps.startDate = value;
-        break;
-      case 'endDate':
+      case 'endDate': {
+        let condition = setConditionForEndDate(modalProps, value);
+        modalProps = Utils.validateField(modalProps, 'endDateValid', 'errorTextEndDate', errorText.endDate, condition, true, value);
         modalProps.endDate = value;
+        }
         break;
       default:
         ''
         break;
     }
     actions.showModal(state.modal.currentModal, modalProps);
-    allValid();
-
-  }
-
-  var allValid = () => {
-    modalProps.okDisabled = false;
+    modalProps.okDisabled = !Utils.allValid(modalProps.validation);
   }
 
   var handleOnChange = (e) => {
-    changeAddProjectField(e.target.name, e.target.value);
+    changeInputField(e.target.name, e.target.value);
   }
 
   var handleOnChangeStartDate = (value, formattedValue) => {
-    changeAddProjectField("startDate", value);
+    changeInputField("startDate", value);
   }
 
   var handleOnChangeEndDate = (value, formattedValue) => {
-    changeAddProjectField("endDate", value);
+    changeInputField("endDate", value);
   }
 
   return (
-    <ModalWrapper title="Project" okText={'Save'} okDisabled={false} onOk={onOk} closeModal={closeModal}>
-
+    <ModalWrapper title="Project" okText={'Save'} okDisabled={modalProps.okDisabled} onOk={onOk} closeModal={closeModal}>
         <form id="addProjectForm">
-
           <div className="form-item">
             <label for="projectName">Projectname *</label>
             <span className="input-group"><input type="text" name="projectName" value={modalProps.name} onChange={handleOnChange}/></span>
             <span className="error-text">{modalProps.errorTextName}</span>
           </div>
-
           <div className="form-item">
             <label for="customer">Customer *</label>
             <span className="input-group"><input type="text" name="customer" value={modalProps.customer} onChange={handleOnChange}/></span>
             <span className="error-text">{modalProps.errorTextCustomer}</span>
           </div>
-
           <div className="form-item">
             <label for="startDate" >Startdate *</label>
             <DatePicker name="startDate" value={modalProps.startDate} onChange={handleOnChangeStartDate} />
             <span className="error-text">{modalProps.errorTextStartDate}</span>
           </div>
-
           <div className="form-item">
             <label for="endDate">Enddate</label>
-            <DatePicker name="endDate" value={modalProps.endDate} onChange={handleOnChangeEndDate} />
+            <DatePicker id="endDate" name="endDate" value={modalProps.endDate} onChange={handleOnChangeEndDate} />
             <span className="error-text">{modalProps.errorTextEndDate}</span>
           </div>
         </form>
-
     </ModalWrapper>
   );
 };

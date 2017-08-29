@@ -21,6 +21,10 @@ button {
     line-height: 1;
 }
 
+button:disabled {
+  opacity: 0.4;
+}
+
 button:hover {
   background-color: var(--main-color);
   color: white;
@@ -84,10 +88,16 @@ button:hover {
   margin-bottom: 30px;
 }
 
-button.modal-close {
+.modal-wrapper button.modal-close {
   position: absolute;
   top: 30px;
   right: 30px;
+  /*border: none;
+  touch-action: manipulation;
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+  background-color: transparent; */
 }
 
 button.modal-ok {

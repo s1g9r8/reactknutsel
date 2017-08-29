@@ -1,5 +1,7 @@
 
 import React from 'react';
+import closeButton from './../../images/cross-green.png';
+
 const { PropTypes } = React;
 
 /*
@@ -49,3 +51,5 @@ ModalWrapper.defaultProps = {
 };
 
 export default ModalWrapper;
+
+//<button className="modal-close"><img src={closeButton} width='15px' height='15px' alt="close-button" onClick={props.closeModal} /></button>

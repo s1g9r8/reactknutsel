@@ -1,7 +1,8 @@
 
 // Project ModalWrapper
-export var projectModal = {
-  errorTextName : 'Name is only 25 characters',
-  errorTextCustomer: 'Customer is only 25 characters',
-  errorTextEndDate: 'Enddate cannot be earlier than Startdate'
+export var projectModalErrorText = {
+  name : 'Name is only 25 characters',
+  customer: 'Customer is only 25 characters',
+  startDate: 'Startdate cannot be equal or later than Enddate',
+  endDate: 'Enddate cannot be equal or earlier than Startdate'
 }

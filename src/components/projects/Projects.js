@@ -11,19 +11,24 @@ import * as PlanboardAPI from './../../api/PlanboardAPI.js';
 const Projects = ({state, actions}) => {
 
   var projects = state.projects;
+  var initialValidationEdit = {nameValid: true,
+                               customerValid: true,
+                               startDateValid: true,
+                               endDateValid: true}
 
   var showProjectModal = (modalProps) => {
     actions.showModal('PROJECT', modalProps);
   }
 
   var addProject = () => {
-    let projectId = {id: ''};
-    showProjectModal(projectId);
+    let projectProps = {id: '', okDisabled: true};
+    showProjectModal(projectProps);
   }
 
   var editProject = (id) => {
     let project = projects.filter((project) => project.id === id);
-    let projectProps = {id: id, name: project[0].name, customer: project[0].customer, startDate: project[0].startDate, endDate: project[0].endDate};
+    let projectProps = {id: id, name: project[0].name, customer: project[0].customer, startDate: project[0].startDate,
+                        endDate: project[0].endDate, okDisabled: false, validation: initialValidationEdit};
     showProjectModal(projectProps);
   }
 
