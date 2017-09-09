@@ -1,40 +1,35 @@
 
 /*
 // input parameters:
-// - modalprops: state in the modal
-// - fieldValid is an attribute of modalProps.validate where the validity of a specific field is stored
-// - errorTextField is an attribute of modalProps.validate and can be used as a field in the html for showing the error message
+// - errorTextProps: state object where error texts are stored
+// - errorTextField is an attribute of errorTextProps and can be used in the html for showing the error message
 // - errorText is the message that is set in the errorTextField
 // - condition is when a field is valid
-// - nullable
-// - value
+// - nullable is if the field can be zero or not
+// - value is the field that is validated
 */
 
-export var validateField = (modalProps, fieldValid, errorTextField, errorText, condition, nullable, value) => {
+export var validateField = (errorTextProps, errorTextField, text, condition, nullable, value) => {
+
   if (!nullable && (value === undefined || value === '' || value === null)) {
-    modalProps.validation[fieldValid] = false;
-    modalProps[errorTextField] = 'This field cannot be empty';
+    errorTextProps[errorTextField] = 'This field cannot be empty';
   }
   else if (!condition) {
-    modalProps.validation[fieldValid] = false;
-    modalProps[errorTextField] = errorText;
+    errorTextProps[errorTextField] = text;
   }
   else {
-    modalProps.validation[fieldValid] = true;
-    modalProps[errorTextField] = '';
+    errorTextProps[errorTextField] = null;
   }
-  return modalProps;
+  return errorTextProps;
 };
 
 
 export var allValid = (validationObject) => {
 
-  var result = Object.keys(validationObject).map((key) =>
-    validationObject[key]
-  );
-
-  if (result.indexOf(undefined) !== -1 || result.indexOf(false) !== -1) {
-    return false;
+  for (var i in validationObject) {
+    if (validationObject[i] !== null) {
+      return false;
+    }
   }
   return true;
 };

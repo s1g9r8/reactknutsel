@@ -65,6 +65,10 @@ button:hover {
   flex-direction: column;
 }
 
+.modal-wrapper:focus {
+  outline: 0;
+}
+
 .modal-wrapper .form-item {
   display: flex;
 }
@@ -92,12 +96,6 @@ button:hover {
   position: absolute;
   top: 30px;
   right: 30px;
-  /*border: none;
-  touch-action: manipulation;
-  cursor: pointer;
-  white-space: nowrap;
-  user-select: none;
-  background-color: transparent; */
 }
 
 button.modal-ok {

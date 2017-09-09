@@ -1,8 +1,8 @@
 
 var modalReducer = (state = [], action) => {
   switch (action.type) {
-    case 'SET_MODAL':
-      return {currentModal: action.currentModal, modalProps: action.modalProps};
+    case 'SET_PROJECT_MODAL_STATUS':
+      return {status: action.status};
     default:
       return state;
   }

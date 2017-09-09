@@ -1,54 +1,42 @@
 
 import React from 'react';
+import moment from 'moment';
+
+import Day from './Day.js';
 
 const Week = (props) => {
 
-  var {
-    id,
-    weekNumber,
-    year,
-    monday,
-    tuesday,
-    wednesday,
-    thursday,
-    friday,
-    mondayDate,
-    tuesdayDate,
-    wednesdayDate,
-    thursdayDate,
-    fridayDate,
-    setHours
-  } = props;
+  var { week } = props;
 
-  var handleChangeHours = (e) => {
-    setHours(id, e.target.name, e.target.value);
-  }
+  var createDate = (day, weekNumber, year) => {
+    return (moment().day(day).week(weekNumber).year(year).format('DD-MM'));
+  };
 
   return (
     <div>
       <table>
-        <caption>Week {weekNumber}</caption>
+        <caption>Week {week.weekNumber}</caption>
         <thead>
           <th></th>
-          <th>Monday {mondayDate}</th>
-          <th>Tuesday {tuesdayDate}</th>
-          <th>Wednesday {wednesdayDate}</th>
-          <th>Thursday {thursdayDate}</th>
-          <th>Friday {fridayDate}</th>
+          <th>Monday {createDate("Monday", week.weekNumber, week.year)}</th>
+          <th>Tuesday {createDate("Tuesday", week.weekNumber, week.year)}</th>
+          <th>Wednesday {createDate("Wednesday", week.weekNumber, week.year)}</th>
+          <th>Thursday {createDate("Thursday", week.weekNumber, week.year)}</th>
+          <th>Friday {createDate("Friday", week.weekNumber, week.year)}</th>
         </thead>
         <tbody>
-          <tr>
-            <th>project x</th>
-            <td><input type="text" name="monday" value={monday} onChange={handleChangeHours}/></td>
-            <td><input type="text" name="tuesday" value={tuesday} onChange={handleChangeHours}/></td>
-            <td><input type="text" name="wednesday" value={wednesday} onChange={handleChangeHours}/></td>
-            <td><input type="text" name="thursday" value={thursday} onChange={handleChangeHours}/></td>
-            <td><input type="text" name="friday" value={friday} onChange={handleChangeHours}/></td>
-          </tr>
+        <tr>
+          <th></th>
+          <td><Day key={week.monday.id} {...week.monday}/></td>
+          <td><Day key={week.tuesday.id} {...week.tuesday}/></td>
+          <td><Day key={week.wednesday.id} {...week.wednesday}/></td>
+          <td><Day key={week.thursday.id} {...week.thursday}/></td>
+          <td><Day key={week.friday.id} {...week.friday}/></td>
+        </tr>
         </tbody>
       </table>
     </div>
   );
-};
+}
 
 export default Week;
