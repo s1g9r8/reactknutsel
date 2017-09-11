@@ -8,20 +8,14 @@ import * as Actions from './../../actions/actions.js';
 
 const Planning = ({ state, actions }) => {
 
+  var weeks = state.planning;
   var projects = state.projects;
-  var weeks = state.weeks;
-
-  var handleAddWeek = () => {
-    actions.addWeek();
-  };
-
-  const button1 = <button>Open portal with pseudo modal</button>;
-
 
   return (
     <div>
       <h1>Planning</h1>
-      <button type="button" onClick={handleAddWeek}>Add week</button>
+      <button>previous</button>
+      <button>next</button>
       <WeekList weeks={weeks} projects={projects} />
     </div>
   );

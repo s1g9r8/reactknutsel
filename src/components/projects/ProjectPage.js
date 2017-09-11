@@ -11,7 +11,7 @@ import * as Actions from './../../actions/actions.js';
 import * as Vutils from './../common/ValidationUtils.js';
 import * as Constants from './../common/Constants.js';
 
-const Projects = ({state, actions}) => {
+const Projects = ({ state, actions }) => {
 
   var projects = state.projects? state.projects : {};
   var projectKey = _.findKey(projects, {'concept': true} );
@@ -84,11 +84,13 @@ const Projects = ({state, actions}) => {
        <h1>Projects</h1>
        <button onClick={addProject}>add project</button>
        <ProjectList projects={projects} removeProject={removeProject} editProject={editProject}/>
-       <Modal isOpen={state.modal.status} className='modal-wrapper'>
+       <Modal isOpen={state.modal.status} className='modal'>
           <h1>Project</h1>
-          <button className='modal-close' onClick={closeModal}>Close</button>
           <ProjectModal id={projectKey} project={project} changeInputField={changeInputField}/>
-          <button className='modal-ok' onClick={saveProject}>Save</button>
+          <div className='button-group'>
+            <button className='modal-close' onClick={closeModal}>Cancel</button>
+            <button className='modal-save' onClick={saveProject}>Save</button>
+          </div>
        </Modal>
     </div>
   );

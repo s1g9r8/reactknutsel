@@ -12,6 +12,10 @@ h1 {
   font-size: 26px;
 }
 
+.weeklist {
+  display: flex;
+}
+
 button {
     border: 1px solid var(--main-color);
     background-color: white;

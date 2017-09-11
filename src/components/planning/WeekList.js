@@ -1,25 +1,33 @@
 
 import React from 'react';
-import Week from './Week.js';
+import _ from 'lodash';
 
-const WeekList = (props) => {
+import WeekListItem from './WeekListItem.js';
 
-  var { weeks } = props;
+const WeekList = ({ weeks, projects }) => {
 
-  var renderWeeks = () => {
+  var renderProjects = () => {
+    if (Object.keys(projects).length >= 1) {
+      return _.map(projects, (project, key) => {
+        return (<div>{project.name}</div>);
+      });
+    }
+  };
+
+  var renderWeekListItems = () => {
     if (Object.keys(weeks).length >= 1) {
-      return weeks.map((week) => {
-        return (<Week key={week.id} week={week} />);
+      return _.map(weeks, (week, key) => {
+        return (<WeekListItem key={key} id={key} {...week} />);
       });
     }
   };
 
   return (
-    <div>
-       {renderWeeks()}
+    <div className='weeklist'>
+      {renderProjects()}
+      {renderWeekListItems()}
     </div>
   );
-
 }
 
 export default WeekList;

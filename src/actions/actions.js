@@ -19,6 +19,12 @@ export var addWeek = () => {
   };
 };
 
+export var getWeeks = () => {
+  return {
+    type: 'GET_WEEKS'
+  };
+};
+
 export var updateWeek = (id, week) => {
   return {
     type: 'UPDATE_WEEK',

@@ -31,13 +31,12 @@ const ProjectModal = ({ id, project, changeInputField }) => {
         </div>
         <div className="form-item">
           <label for="startDate" >Startdate *</label>
-          <DatePicker name="startDate" value={project.startDate} onChange={handleOnChangeStartDate} />
+          <DatePicker name="startDate" dateFormat="DD/MM/YYYY" value={project.startDate} onChange={handleOnChangeStartDate} />
           <span className="error-text">{project.errorText.startDate}</span>
         </div>
         <div className="form-item">
           <label for="endDate">Enddate</label>
-          <DatePicker id="endDate" name="endDate" value={project.endDate} onChange={handleOnChangeEndDate} />
-          <span className="error-text">{project.errorText.endDate}</span>
+          <DatePicker dateFormat="DD/MM/YYYY" name="endDate" value={project.endDate} onChange={handleOnChangeEndDate} />
         </div>
     </form>
   );
